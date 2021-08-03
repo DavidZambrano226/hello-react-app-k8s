@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app-deployment
+  labels:
+    app: nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: davidzambrano/hello-react-app
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "150Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "1024m"
